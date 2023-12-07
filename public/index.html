@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compra de Produto</title>
+</head>
+<body>
+
+  <h1>Compra de Produto</h1>
+
+  <form id="compraForm">
+    <label for="idUsuario">ID do Usuário:</label>
+    <input type="text" id="idUsuario" name="idUsuario" required><strong>É preciso utilizar um ID de usuário existente na lista de usuarios</strong><br>
+
+    <label for="idProduto">ID do Produto:</label>
+    <input type="text" id="idProduto" name="idProduto" required><strong>É preciso utilizar um ID de produto existente na lista de produtos</strong><br>
+
+    <label for="quantidade">Quantidade:</label>
+    <input type="text" id="quantidade" name="quantidade" required><strong>A quantidade não pode ser maior do que possui em estoque</strong><br>
+
+    <button type="button" onclick="realizarCompra()">Realizar Compra</button>
+  </form>
+  <hr>
+  <h3>Uma nova abra abrirá ao clicar nos links das listas abaixo</h3>
+  <p>
+    <a href="http://localhost:3000/usuarios" target="_blank">Ver lista de usuários cadastrados</a>
+  </p>
+
+  <p>
+    <a href="http://localhost:3000/produtos" target="_blank">Ver lista de produtos</a>
+  </p>
+
+  <p>
+    <a href="http://localhost:3000/compras" target="_blank">Ver compras realizadas</a> (É preciso <strong>realizar alguma compra</strong> primeiro, então será possível às ver clicando aqui)
+  </p>
+  <hr>
+  <p>
+    <a href="http://localhost:3000/estoque-baixo" target="_blank">Ver Produtos com Estoque Baixo</a> (Considerado abaixo de 20 no estoque)
+  </p>
+  <p>
+    <a href="http://localhost:3000/media" target="_blank">Média de compras por usuário</a> (É preciso realizar uma ou mais compras de um ou mais usuários para visualizar essa lista)
+  </p>
+  <p>
+    <a href="http://localhost:3000/produtos-mais-vendidos" target="_blank">Produtos mais vendidos</a> (É preciso realizar alguma compra para ser mostrado as vendas feitas nessa lista)
+  </p>
+  <hr>
+  <h4>
+    Como explicado no documento, é preciso usar a ferrameenta "Postman" para realizar CRUD de usuários e produtos.
+  </h4>
+  <script>
+    function realizarCompra() {
+      const idUsuario = document.getElementById('idUsuario').value;
+      const idProduto = document.getElementById('idProduto').value;
+      const quantidade = document.getElementById('quantidade').value;
+
+      fetch('http://localhost:3000/usuarios/comprar', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          idUsuario: parseInt(idUsuario),
+          idProduto: parseInt(idProduto),
+          quantidade: parseInt(quantidade),
+        }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        alert(data.mensagem);
+      })
+      .catch(error => {
+        alert('Erro ao realizar a compra.');
+        console.error('Erro:', error);
+      });
+    }
+  </script>
+</body>
+</html>
