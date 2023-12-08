@@ -3,8 +3,8 @@ const mysql = require('mysql');
 
 const db = mysql.createConnection({
   host: 'localhost',
-  user: 'root', //digite o mesmo nome de usuário definido durante a instalação do MySQL
-  password: 'password', // digite a mesma senha definida durante a instalação do MySQL
+  user: 'root', //digite dentro das aspas o mesmo nome de usuário definido durante a instalação do MySQL
+  password: 'password', //digite dentro das aspas a mesma senha definida durante a instalação do MySQL
 });
 
 db.connect((err) => {
@@ -14,7 +14,7 @@ db.connect((err) => {
     console.log('Conectado ao banco de dados MySQL');
 
     // Criação do banco de dados
-    db.query('CREATE DATABASE IF NOT EXISTS comprasdb', (err) => { //altere 'comprasdb' caso necessário
+    db.query('CREATE DATABASE IF NOT EXISTS comprasdb', (err) => { //altere 'comprasdb' caso necessário 
       if (err) {
         console.error('Erro ao criar banco de dados', err.message);
       } else {
