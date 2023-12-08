@@ -14,11 +14,11 @@ db.connect((err) => {
     console.log('Conectado ao banco de dados MySQL');
 
     // Criação do banco de dados
-    db.query('CREATE DATABASE IF NOT EXISTS comprasdba', (err) => { //altere 'comprasdb' caso necessário
+    db.query('CREATE DATABASE IF NOT EXISTS comprasdb', (err) => { //altere 'comprasdb' caso necessário
       if (err) {
         console.error('Erro ao criar banco de dados', err.message);
       } else {
-        console.log('Banco de dados "comprasdba" verificado/criado com sucesso.');
+        console.log('Banco de dados "comprasdb" verificado/criado com sucesso.');
 
         // Use o banco de dados "comprasdb"
         db.query('USE comprasdba', (err) => { //Se 'comprasdb' foi alterada, o mesmo nome deverá ser subistituído aqui
