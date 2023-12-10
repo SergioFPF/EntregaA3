@@ -21,7 +21,7 @@ db.connect((err) => {
         console.log('Banco de dados "comprasdb" verificado/criado com sucesso.');
 
         // Use o banco de dados "comprasdb"
-        db.query('USE comprasdba', (err) => { //Se 'comprasdb' foi alterada, o mesmo nome deverá ser subistituído aqui
+        db.query('USE comprasdb', (err) => { //Se 'comprasdb' foi alterada, o mesmo nome deverá ser subistituído aqui
           if (err) {
             console.error('Erro ao selecionar o banco de dados', err.message);
           } else {
